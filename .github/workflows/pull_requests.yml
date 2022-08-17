@@ -1,0 +1,33 @@
+name: Check PR
+on: push
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+    - name: Install Dependencies
+      run: npm install --ignore-scripts
+    - name: Build
+      run: npm run build
+    - name: Lint
+      run: npm run lint
+    - name: Test
+      run: npm test
+    - name: Post Coverage
+      run: node_modules/.bin/codecov -t ${{ secrets.CODECOV_TOKEN }}
+  
+  security:
+    name: Security
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+    - name: NPM Audit
+      run: npm audit
