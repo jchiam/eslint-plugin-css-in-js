@@ -1,46 +1,38 @@
-# eslint-plugin-sort-key-custom-order
+# eslint-plugin-css-in-js
 
-Sort key rule with custom ordering
+This plugin provides a collection of ESLint rules that help with linting CSS-in-JS codebases.
 
 ## Installation
 
 You'll first need to install [ESLint](https://eslint.org/):
 
 ```sh
-npm i eslint --save-dev
+npm i eslint, @jchiam/eslint-plugin-css-in-js --save-dev
 ```
 
-Next, install `eslint-plugin-sort-key-custom-order`:
+Add the plugin to your ESLint config file (e.g. `.eslintrc`):
 
-```sh
-npm install eslint-plugin-sort-key-custom-order --save-dev
+```json
+{
+  "plugins": [
+    ...,
+    "@jchiam/eslint-plugin-css-in-js"
+  ]
+}
 ```
 
 ## Usage
 
-Add `sort-key-custom-order` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+The plugin does not enable any rule out of the box. To add a rule, add them manually to the rules section in your ESLint config file.
 
 ```json
 {
-    "plugins": [
-        "sort-key-custom-order"
-    ]
-}
-```
-
-
-Then configure the rules you want to use under the rules section.
-
-```json
-{
-    "rules": {
-        "sort-key-custom-order/rule-name": 2
-    }
+  "rules": {
+    "@jchiam/css-in-js/css-concentric-order": "warn"
+  }
 }
 ```
 
 ## Supported Rules
 
-* Fill in provided rules here
-
-
+- [css-concentric-order](https://github.com/jchiam/eslint-plugin-css-in-js/tree/master/src/rules/css-concentric-order#readme)
