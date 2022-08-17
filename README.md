@@ -1,3 +1,8 @@
+[![npm](https://img.shields.io/npm/v/@jchiam/eslint-plugin-css-in-js.svg)](https://npmjs.org/package/eslint-plugin-css-in-js)
+[![Codecov](https://img.shields.io/codecov/c/github/jchiam/eslint-plugin-css-in-js.svg)]()
+[![GitHub last commit](https://img.shields.io/github/last-commit/jchiam/eslint-plugin-css-in-js.svg)](https://github.com/jchiam/eslint-plugin-css-in-js/)
+[![license](https://img.shields.io/github/license/jchiam/eslint-plugin-css-in-js.svg)](https://opensource.org/licenses/MIT)
+
 # eslint-plugin-css-in-js
 
 This plugin provides a collection of ESLint rules that help with linting CSS-in-JS codebases.
