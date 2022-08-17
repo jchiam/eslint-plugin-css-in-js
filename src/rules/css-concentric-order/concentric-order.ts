@@ -24,12 +24,12 @@ const cssProperties = [
 
   /* flex */
   'flex',
-  'flex-basis',
-  'flex-direction',
-  'flex-flow',
-  'flex-grow',
-  'flex-shrink',
-  'flex-wrap',
+  'flex-basis', 'flexBasis',
+  'flex-direction', 'flexDirection',
+  'flex-flow', 'flexFlow',
+  'flex-grow', 'flexGrow',
+  'flex-shrink', 'flexShrink',
+  'flex-wrap', 'flexWrap',
 
   /* grid */
   'grid',
@@ -52,14 +52,14 @@ const cssProperties = [
   'grid-column-gap',
 
   /* align-content */
-  'align-content',
-  'align-items',
-  'align-self',
+  'align-content', 'alignContent',
+  'align-items', 'alignItems',
+  'align-self', 'alignSelf',
 
   /* justify-content */
   'justify-content', 'justifyContent',
-  'justify-items',
-  'justify-self',
+  'justify-items', 'justifyItems',
+  'justify-self', 'justifySelf',
 
   /* order */
   'order',
@@ -156,39 +156,39 @@ const cssProperties = [
 
   /* background */
   'background',
-  'background-attachment',
-  'background-clip',
-  'background-color',
-  'background-image',
-  'background-origin',
-  'background-position',
-  'background-repeat',
-  'background-size',
+  'background-attachment', 'backgroundAttachment',
+  'background-clip', 'backgroundClip',
+  'background-color', 'backgroundColor',
+  'background-image', 'backgroundImage',
+  'background-origin', 'backgroundOrigin',
+  'background-position', 'backgroundPosition',
+  'background-repeat', 'backgroundRepeat',
+  'background-size', 'backgroundSize',
 
   /* cursor */
   'cursor',
 
   /* padding */
   'padding',
-  'padding-top',
-  'padding-right',
-  'padding-bottom',
-  'padding-left',
+  'padding-top', 'paddingTop',
+  'padding-right', 'paddingRight',
+  'padding-bottom', 'paddingBottom',
+  'padding-left', 'paddingLeft',
 
   /* width */
   'width',
-  'min-width',
-  'max-width',
+  'min-width', 'minWidth',
+  'max-width', 'maxWidth',
 
   /* height */
   'height',
-  'min-height',
-  'max-height',
+  'min-height', 'minHeight',
+  'max-height', 'maxHeight',
 
   /* overflow */
   'overflow',
-  'overflow-x',
-  'overflow-y',
+  'overflow-x', 'overflowX',
+  'overflow-y', 'overflowY',
   'resize',
 
   /* list-style */
@@ -216,57 +216,57 @@ const cssProperties = [
   'animation-play-state',
 
   /* vertical-alignment */
-  'vertical-align',
+  'vertical-align', 'verticalAlign',
 
   /* text-alignment & decoration */
   'direction',
-  'tab-size',
-  'text-align',
-  'text-align-last',
-  'text-justify',
-  'text-indent',
-  'text-transform',
-  'text-decoration',
-  'text-decoration-color',
-  'text-decoration-line',
-  'text-decoration-style',
-  'text-rendering',
-  'text-shadow',
-  'text-overflow',
+  'tab-size', 'tabSize',
+  'text-align', 'textAlign',
+  'text-align-last', 'textAlignLast',
+  'text-justify', 'textJustify',
+  'text-indent', 'textIndent',
+  'text-transform', 'textTransform',
+  'text-decoration', 'textDecoration',
+  'text-decoration-color', 'textDecorationColor',
+  'text-decoration-line', 'textDecorationLine',
+  'text-decoration-style', 'textDecorationStyle',
+  'text-rendering', 'textRendering',
+  'text-shadow', 'textShadow',
+  'text-overflow', 'textOverflow',
 
   /* text-spacing */
   'line-height', 'lineHeight',
-  'word-spacing',
-  'letter-spacing',
-  'white-space',
-  'word-break',
-  'word-wrap',
+  'word-spacing', 'wordSpacing',
+  'letter-spacing', 'letterSpacing',
+  'white-space', 'whiteSpace',
+  'word-break', 'wordBreak',
+  'word-wrap', 'wordWrap',
   'color',
 
   /* font */
   'font',
-  'font-family',
+  'font-family', 'fontFamily',
   'font-size', 'fontSize',
-  'font-size-adjust',
-  'font-stretch',
-  'font-weight',
-  'font-smoothing',
+  'font-size-adjust', 'fontSizeAdjust',
+  'font-stretch', 'fontStretch',
+  'font-weight', 'fontWeight',
+  'font-smoothing', 'fontSmoothing',
   'osx-font-smoothing',
-  'font-variant',
-  'font-style',
+  'font-variant', 'fontVariant',
+  'font-style', 'fontStyle',
 
   /* content */
   'content',
   'quotes',
 
   /* counters */
-  'counter-reset',
-  'counter-increment',
+  'counter-reset', 'counterReset',
+  'counter-increment', 'counterIncrement',
 
   /* breaks */
-  'page-break-before',
-  'page-break-after',
-  'page-break-inside'
+  'page-break-before', 'pageBreakBefore',
+  'page-break-after', 'pageBreakAfter',
+  'page-break-inside', 'pageBreakInside'
 ];
 
 export const cssPropertiesIdxMap = new Map(cssProperties.map((p, idx) => [p, idx]));
