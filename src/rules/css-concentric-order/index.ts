@@ -23,9 +23,8 @@ const isValidOrder = (prevName: string, currentName: string) => {
     return true;
   } else if (prevOrder !== undefined || prevOrder === undefined && currentOrder === undefined) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 };
 
 const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.RuleListener => {
@@ -42,14 +41,14 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
       };
     },
 
-    "ObjectExpression:exit"() {
+    'ObjectExpression:exit'() {
       if (stack) {
         stack = stack.upper;
       }
     },
 
     SpreadElement(node) {
-      if (stack && node.parent?.type === "ObjectExpression") {
+      if (stack && node.parent?.type === TSESTree.AST_NODE_TYPES.ObjectExpression) {
         stack.prevName = null;
       }
     },
@@ -59,16 +58,16 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
         return;
       }
 
-      if (node.parent?.type === "ObjectPattern") {
+      if (node.parent?.type === TSESTree.AST_NODE_TYPES.ObjectPattern) {
         return;
       }
 
-      const prevName = stack.prevName;
+      const { prevName } = stack;
       const thisName = ASTUtils.getPropertyName(node);
 
       // Get tokens between current node and previous node
       const tokens = stack.prevNode && sourceCode
-          .getTokensBetween(stack.prevNode, node, { includeComments: true });
+        .getTokensBetween(stack.prevNode, node, { includeComments: true });
 
       let isBlankLineBetweenNodes = stack.prevBlankLine;
 
