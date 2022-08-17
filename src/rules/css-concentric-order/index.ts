@@ -8,8 +8,6 @@ export const messageId = 'css-concentric-order';
 
 type NodeStack = {
   upper: NodeStack | null;
-  prevNode: TSESTree.Node | null;
-  prevBlankLine: boolean;
   prevName: string | null;
 }
 
@@ -29,14 +27,11 @@ const isValidOrder = (prevName: string, currentName: string) => {
 
 const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.RuleListener => {
   let stack: NodeStack | null = null;
-  const sourceCode = context.getSourceCode();
 
   return {
     ObjectExpression() {
       stack = {
         upper: stack,
-        prevNode: null,
-        prevBlankLine: false,
         prevName: null
       };
     },
@@ -65,43 +60,8 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
       const { prevName } = stack;
       const thisName = ASTUtils.getPropertyName(node);
 
-      // Get tokens between current node and previous node
-      const tokens = stack.prevNode && sourceCode
-        .getTokensBetween(stack.prevNode, node, { includeComments: true });
-
-      let isBlankLineBetweenNodes = stack.prevBlankLine;
-
-      if (tokens) {
-
-        // check blank line between tokens
-        tokens.forEach((token, index) => {
-          const previousToken = tokens[index - 1];
-
-          if (previousToken && (token.loc.start.line - previousToken.loc.end.line > 1)) {
-            isBlankLineBetweenNodes = true;
-          }
-        });
-
-        // check blank line between the current node and the last token
-        if (!isBlankLineBetweenNodes && (node.loc.start.line - tokens[tokens.length - 1].loc.end.line > 1)) {
-          isBlankLineBetweenNodes = true;
-        }
-
-        // check blank line between the first token and the previous node
-        if (!isBlankLineBetweenNodes && stack.prevNode && (tokens[0].loc.start.line - stack.prevNode.loc.end.line > 1)) {
-          isBlankLineBetweenNodes = true;
-        }
-      }
-
-      stack.prevNode = node;
-
       if (thisName !== null) {
         stack.prevName = thisName;
-      }
-
-      if (isBlankLineBetweenNodes) {
-        stack.prevBlankLine = thisName === null;
-        return;
       }
 
       if (prevName === null || thisName === null) {

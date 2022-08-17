@@ -9,6 +9,7 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run('css-concentric-order', rule, {
   valid: [
     {
+      // correctly-ordered styles in multiple classes
       code: `const useStyles = makeStyles({
         masthead: {
           display: 'flex',
@@ -65,18 +66,6 @@ ruleTester.run('css-concentric-order', rule, {
       };`
     },
     {
-      // correctly-ordered styles in a class
-      code: `const test = {
-        container: {
-          display: 'flex',
-          position: 'relative',
-          justifyContent: 'center',
-          lineHeight: 1.6,
-          fontSize: '10px'
-        }
-      };`
-    },
-    {
       // irrelevant object keys are ignored
       code: `const test = {
         container: 'test',
@@ -89,6 +78,19 @@ ruleTester.run('css-concentric-order', rule, {
         display: 'flex',
         fontSize: '10px',
         container: 'test'
+      };`
+    },
+    {
+      // blank lines between object keys are supported
+      code: `const test = {
+        container: {
+          display: 'flex',
+          position: 'relative',
+
+          justifyContent: 'center',
+          lineHeight: 1.6,
+          fontSize: '10px'
+        }
       };`
     }
   ],
@@ -112,6 +114,20 @@ ruleTester.run('css-concentric-order', rule, {
         fontSize: '10px',
         container: 'test',
         display: 'flex'
+      };`,
+      errors: [{ messageId }]
+    },
+    {
+      // blank lines between object keys are supported
+      code: `const test = {
+        container: {
+          display: 'flex',
+          justifyContent: 'center',
+
+          position: 'relative',
+          lineHeight: 1.6,
+          fontSize: '10px'
+        }
       };`,
       errors: [{ messageId }]
     }
