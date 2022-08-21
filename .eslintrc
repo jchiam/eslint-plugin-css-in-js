@@ -1,4 +1,4 @@
 {
-  "extends": "@jchiam/eslint-config",
+  "extends": "@jchiam/eslint-config/recommended",
   "rules": {}
 }
