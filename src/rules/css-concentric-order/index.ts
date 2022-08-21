@@ -1,6 +1,7 @@
 import { ESLintUtils, TSESLint, TSESTree, ASTUtils } from '@typescript-eslint/utils';
 
 import { cssPropertiesIdxMap } from './concentric-order';
+import { griffelShorthandCSSPropertiesSet } from './griffel-shorthands';
 
 const createRule = ESLintUtils.RuleCreator(name => `${name}/PLACEHOLDER_README.md`);
 
@@ -42,12 +43,7 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
       }
     },
 
-    SpreadElement(node) {
-      if (stack && node.parent?.type === TSESTree.AST_NODE_TYPES.ObjectExpression) {
-        stack.prevName = null;
-      }
-    },
-
+    // regular property
     Property(node) {
       if (stack == null) {
         return;
@@ -75,6 +71,48 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
             prevKey: prevName
           },
           loc: node.key.loc,
+          messageId
+        });
+      }
+    },
+
+    // identifier from spread element
+    // griffel shorthands: ...shorthands.margin(...), ...shorthands.padding(...)
+    Identifier(node) {
+      if (stack == null) {
+        return;
+      }
+
+      if (
+        // checks for SpreadElement -> CallExpression -> MemberExpression
+        node.parent?.type !== TSESTree.AST_NODE_TYPES.MemberExpression ||
+        node.parent.parent?.type !== TSESTree.AST_NODE_TYPES.CallExpression ||
+        node.parent.parent.parent?.type !== TSESTree.AST_NODE_TYPES.SpreadElement ||
+
+        // checks that Identifier name is one of Griffel shorthand CSS properties
+        !griffelShorthandCSSPropertiesSet.has(node.name)
+      ) {
+        return;
+      }
+
+      const { prevName } = stack;
+      const thisName = node.name;
+
+      if (thisName !== null) {
+        stack.prevName = thisName;
+      }
+
+      if (prevName === null || thisName === null) {
+        return;
+      }
+
+      if (!isValidOrder(prevName, thisName)) {
+        context.report({
+          data: {
+            currentKey: thisName,
+            prevKey: prevName
+          },
+          loc: node.loc,
           messageId
         });
       }

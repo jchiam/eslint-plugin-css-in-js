@@ -52,16 +52,16 @@ ruleTester.run('css-concentric-order', rule, {
       };`
     },
     {
-      // TODO: FluentUI shorthands not supported yet
+      // FluentUI, Griffel shorthands follows ordering
       code: `const test = {
         container: {
-          ...shorthands.margin('4px', 0),
           display: 'flex',
           position: 'relative',
           justifyContent: 'center',
+          ...shorthands.margin('4px', 0),
+          ...shorthands.padding('4px', 0),
           lineHeight: 1.6,
-          fontSize: '10px',
-          ...shorthands.padding('4px', 0)
+          fontSize: '10px'
         }
       };`
     },
@@ -125,6 +125,35 @@ ruleTester.run('css-concentric-order', rule, {
           justifyContent: 'center',
 
           position: 'relative',
+          lineHeight: 1.6,
+          fontSize: '10px'
+        }
+      };`,
+      errors: [{ messageId }]
+    },
+    {
+      // FluentUI, Griffel shorthands follows ordering - comparison between shorthand and property
+      code: `const test = {
+        container: {
+          display: 'flex',
+          position: 'relative',
+          justifyContent: 'center',
+          lineHeight: 1.6,
+          fontSize: '10px',
+          ...shorthands.padding('4px', customTokens.contentLeftRightPadding)
+        }
+      };`,
+      errors: [{ messageId }]
+    },
+    {
+      // FluentUI, Griffel shorthands follows ordering - comparison between shorthands
+      code: `const test = {
+        container: {
+          display: 'flex',
+          position: 'relative',
+          justifyContent: 'center',
+          ...shorthands.padding('4px', customTokens.contentLeftRightPadding),
+          ...shorthands.margin('4px', 0),
           lineHeight: 1.6,
           fontSize: '10px'
         }

@@ -11,6 +11,12 @@ This rule validates JavaScript object based on the following:
 
 See [tests](https://github.com/jchiam/eslint-plugin-css-in-js/tree/master/src/rules/css-concentric-order/index.spec.ts) for examples of valid and invalid object key ordering.
 
+### CSS-in-JS - Griffel
+
+This rule supports Griffel [shorthands](https://github.com/microsoft/griffel/blob/main/packages/core/src/shorthands/index.ts). For shorthands used as spread elements in objects, the shorthand property is treated as CSS property instead.
+
+E.g. `...shorthands.padding` is treated as `padding` during comparisons.
+
 ## Options
 
 This rule takes no options.
