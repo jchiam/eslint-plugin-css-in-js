@@ -1,0 +1,19 @@
+export const griffelShorthandCSSPropertiesSet = new Set([
+  'border',
+  'borderLeft',
+  'borderBottom',
+  'borderRight',
+  'borderTop',
+  'borderColor',
+  'borderStyle',
+  'borderRadius',
+  'borderWidth',
+  'flex',
+  'gap',
+  'gridArea',
+  'margin',
+  'padding',
+  'overflow',
+  'inset',
+  'outline'
+]);
