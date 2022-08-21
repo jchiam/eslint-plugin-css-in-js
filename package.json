@@ -27,11 +27,12 @@
   },
   "homepage": "https://github.com/jchiam/eslint-plugin-css-in-js#readme",
   "devDependencies": {
-    "@jchiam/eslint-config": "^3.0.3",
+    "@jchiam/eslint-config": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "@typescript-eslint/utils": "^5.33.1",
     "codecov": "^3.8.3",
+    "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.1",
     "is-ci": "^3.0.1",
     "jest": "^28.1.3",
