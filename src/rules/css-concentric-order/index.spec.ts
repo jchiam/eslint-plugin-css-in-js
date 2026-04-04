@@ -1,10 +1,8 @@
-import { ESLintUtils } from '@typescript-eslint/utils';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { rule, messageId } from './index';
+import { rule, messageId } from './index.js';
 
-const ruleTester = new ESLintUtils.RuleTester({
-  parser: '@typescript-eslint/parser'
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('css-concentric-order', rule, {
   valid: [
