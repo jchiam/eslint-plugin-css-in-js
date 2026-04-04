@@ -1,7 +1,7 @@
 import { ESLintUtils, TSESLint, TSESTree, ASTUtils } from '@typescript-eslint/utils';
 
-import { cssPropertiesIdxMap } from './concentric-order';
-import { griffelShorthandCSSPropertiesSet } from './griffel-shorthands';
+import { cssPropertiesIdxMap } from './concentric-order.js';
+import { griffelShorthandCSSPropertiesSet } from './griffel-shorthands.js';
 
 const createRule = ESLintUtils.RuleCreator(name => `${name}/PLACEHOLDER_README.md`);
 
@@ -10,7 +10,7 @@ export const messageId = 'css-concentric-order';
 type NodeStack = {
   upper: NodeStack | null;
   prevName: string | null;
-}
+};
 
 const isValidOrder = (prevName: string, currentName: string) => {
   const prevOrder = cssPropertiesIdxMap.get(prevName);
@@ -125,8 +125,7 @@ export const rule = createRule({
   name: 'css-concentric-order',
   meta: {
     docs: {
-      description: 'CSS-in-JS properties should follow concentric order.',
-      recommended: 'warn'
+      description: 'CSS-in-JS properties should follow concentric order.'
     },
     messages: {
       'css-concentric-order': 'Expected css object key \'{{currentKey}}\' to be before \'{{prevKey}}\'.'

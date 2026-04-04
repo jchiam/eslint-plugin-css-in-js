@@ -1,7 +1,7 @@
-import { rule as concentricOrderRule } from './rules/css-concentric-order';
+import { rule as concentricOrderRule } from './rules/css-concentric-order/index.js';
 
-const rules = {
-  'css-concentric-order': concentricOrderRule
+export default {
+  rules: {
+    'css-concentric-order': concentricOrderRule
+  }
 };
-
-export = { rules };
