@@ -90,6 +90,24 @@ ruleTester.run('css-concentric-order', rule, {
           fontSize: '10px'
         }
       };`
+    },
+    {
+      // Property outside ObjectExpression (destructured function param) — stack is null, rule skips
+      code: 'function foo({ display, fontSize }) {}'
+    },
+    {
+      // Property inside ObjectPattern (method shorthand destructuring) — parent is ObjectPattern, rule skips
+      code: 'const obj = { fn({ display, fontSize }) {} };'
+    },
+    {
+      // Griffel shorthand is first key in object — prevName is null, no predecessor to compare against
+      code: `const test = {
+        container: {
+          ...shorthands.padding('4px', 0),
+          lineHeight: 1.6,
+          fontSize: '10px'
+        }
+      };`
     }
   ],
   invalid: [
