@@ -21,4 +21,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run lint
-      - run: npm test
+      - run: npm test -- --coverage
+      - name: Post Coverage
+        if: matrix.node-version == 24
+        uses: codecov/codecov-action@v6
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/lcov.info

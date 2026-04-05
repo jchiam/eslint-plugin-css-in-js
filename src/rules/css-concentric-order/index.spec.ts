@@ -108,6 +108,10 @@ ruleTester.run('css-concentric-order', rule, {
           fontSize: '10px'
         }
       };`
+    },
+    {
+      // Computed property with dynamic key — getPropertyName returns null, rule skips
+      code: 'const test = { [someVar]: \'flex\' };'
     }
   ],
   invalid: [
