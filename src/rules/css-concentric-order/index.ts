@@ -38,6 +38,7 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
     },
 
     'ObjectExpression:exit'() {
+      // c8 ignore next -- stack is always non-null inside ObjectExpression:exit (set on entry above)
       if (stack) {
         stack = stack.upper;
       }
@@ -98,6 +99,7 @@ const ruleFn = (context: TSESLint.RuleContext<string, Array<string>>): TSESLint.
       const { prevName } = stack;
       const thisName = node.name;
 
+      // c8 ignore next -- Identifier.name is typed as string in the AST spec, never null
       if (thisName !== null) {
         stack.prevName = thisName;
       }
