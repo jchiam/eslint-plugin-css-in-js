@@ -1,6 +1,6 @@
 {
   "name": "@jchiam/eslint-plugin-css-in-js",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "A CSS-in-JS plugin for ESLint.",
   "type": "module",
   "main": "lib/index.js",
