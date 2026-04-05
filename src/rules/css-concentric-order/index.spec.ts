@@ -93,11 +93,11 @@ ruleTester.run('css-concentric-order', rule, {
     },
     {
       // Property outside ObjectExpression (destructured function param) — stack is null, rule skips
-      code: `function foo({ display, fontSize }) {}`
+      code: 'function foo({ display, fontSize }) {}'
     },
     {
       // Property inside ObjectPattern (method shorthand destructuring) — parent is ObjectPattern, rule skips
-      code: `const obj = { fn({ display, fontSize }) {} };`
+      code: 'const obj = { fn({ display, fontSize }) {} };'
     },
     {
       // Griffel shorthand is first key in object — prevName is null, no predecessor to compare against
