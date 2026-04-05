@@ -1,4 +1,4 @@
-name: Check PR
+wname: Check PR
 
 on:
   push:
